@@ -33,8 +33,9 @@ void hashGenerator(JsonFiler& j) {
         // Проверяем, это хэш с 4-мя нулями в конце?
         if (lastChar == Ending) {
             // Уровень логирования для данного события info - нашли нужный хэш
-            BOOST_LOG_TRIVIAL(info) << "Necessary ending found in hash |" << hash
-                                    << "| generarted from string |" << genstring << "|";
+            BOOST_LOG_TRIVIAL(info)
+                << "Necessary ending found in hash |" << hash
+                << "| generarted from string |" << genstring << "|";
             // Создаём элемент json-файла (сохраним хэш-функцию)
             if (addToJson) {
                 j.NewElement(genstring, hash, timestamp);
@@ -42,7 +43,8 @@ void hashGenerator(JsonFiler& j) {
         } else {
             // Уровень логирования для данного события trace - хэш не подходит
             BOOST_LOG_TRIVIAL(trace)
-                    << "Hash |" << hash << "| generated from string|" << genstring << "|";
+                << "Hash |" << hash << "| generated from string|"
+                << genstring << "|";
         }
     }
 }

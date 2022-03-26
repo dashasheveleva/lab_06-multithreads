@@ -1,7 +1,7 @@
 // Copyright 2022 Shevelyova Darya photodoshfy@gmail.com
 
-#ifndef INCLUDE_HASH_HPP
-#define INCLUDE_HASH_HPP
+#ifndef INCLUDE_HASH_HPP_
+#define INCLUDE_HASH_HPP_
 
 #include <boost/log/expressions.hpp>
 #include <boost/log/sinks.hpp>
@@ -31,8 +31,9 @@ public:
 
 private:
     // mutable показывает, что член класса является изменяемым,
-    // и его можно изменять в функциях, у которых указан модификатор const, а также у константных объектов.
+    // и его можно изменять в функциях, у которых указан модификатор const,
+    // а также у константных объектов.
     mutable std::mutex mut; // Обеспечиваем потокобезопасность данных
     json JsonArray; // json-массив
 };
-#endif //INCLUDE_HASH_HPP
+#endif // INCLUDE_HASH_HPP_

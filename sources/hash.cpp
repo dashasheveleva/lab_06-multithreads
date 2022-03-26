@@ -31,9 +31,10 @@ void SetUpLogging() {
     consoleLogger->set_filter(boost::log::trivial::severity ==
                               boost::log::trivial::info);
 }
-void JsonFiler::NewElement(const std::string& randString, const std::string& hash,
-                   std::time_t timestamp) {
-    // Поток запрашивает монопольное использование общих данных, защищаемых мьютексом
+void JsonFiler::NewElement(const std::string& randString,
+                           const std::string& hash,
+                           std::time_t timestamp) {
+    // Поток запрашивает монопольное использование данных, защищаемых мьютексом
     std::scoped_lock<std::mutex> lock(mut);
     // Hex-представление прообраза хеш-функции
     std::stringstream HexString;
