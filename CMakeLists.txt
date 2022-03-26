@@ -17,7 +17,7 @@ include("cmake/HunterGate.cmake")
 
 HunterGate(
   URL "https://github.com/cpp-pm/hunter/archive/v0.23.278.tar.gz"
-  SHA1 "95c47c92f68edb091b5d6d18924baabe02a6962a"
+  SHA1 "35fa55bc1dfcf9f4d7264f8bb26cd1759ce1ae07"
 )
 
 # TODO: rename project and delete this comment
@@ -97,17 +97,3 @@ endif()
 
 include(CPackConfig.cmake)
 
-install(TARGETS ${PROJECT_NAME} demo
-  EXPORT "${PROJECT_NAME}-targets"
-  RUNTIME DESTINATION bin
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  INCLUDES DESTINATION include
-)
-
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
-
-install(EXPORT "${PROJECT_NAME}-targets"
-  NAMESPACE "${PROJECT_NAME}::"
-  DESTINATION "lib/cmake"
-)
