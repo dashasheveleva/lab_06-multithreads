@@ -17,7 +17,7 @@ include("cmake/HunterGate.cmake")
 
 HunterGate(
   URL "https://github.com/cpp-pm/hunter/archive/v0.23.278.tar.gz"
-  SHA1 "35fa55bc1dfcf9f4d7264f8bb26cd1759ce1ae07"
+  SHA1 "95c47c92f68edb091b5d6d18924baabe02a6962a"
 )
 
 # TODO: rename project and delete this comment
@@ -78,6 +78,7 @@ if(BUILD_COVERAGE)
   set(ENABLE_COVERAGE ON CACHE BOOL "Enable coverage build." FORCE)
   list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/tools/coverage/cmake")
   find_package(codecov)
+  string(APPEND CMAKE_CXX_FLAGS " --coverage")
   add_coverage(${PROJECT_NAME})
   add_coverage(tests)
   coverage_evaluate()
@@ -95,3 +96,18 @@ if(BUILD_DOCS)
 endif()
 
 include(CPackConfig.cmake)
+
+install(TARGETS ${PROJECT_NAME} demo
+  EXPORT "${PROJECT_NAME}-targets"
+  RUNTIME DESTINATION bin
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  INCLUDES DESTINATION include
+)
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
+
+install(EXPORT "${PROJECT_NAME}-targets"
+  NAMESPACE "${PROJECT_NAME}::"
+  DESTINATION "lib/cmake"
+)
